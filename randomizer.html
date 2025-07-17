@@ -115,11 +115,12 @@
 				right: 1rem;
 				top: 1rem;
 				cursor: pointer;
+                color: #0dd6d1;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="randomizer-modal">
+		    <div class="randomizer-modal">
 				<div class="rand-modal-close">&times;</div>
 				<div class="randomiser-wrapper">
 					<h1>Крутите колесо!</h1>
@@ -135,8 +136,10 @@
 			<script>
 				const close = document.querySelector(".rand-modal-close");
 				const randModal = document.querySelector(".randomizer-modal");
+                let time = 1000;
 				close.addEventListener("click", (e) => {
 					randModal.classList.remove("randomizer-modal_active");
+                    time = 30000
 					interval()
 					
 				});
@@ -147,7 +150,7 @@
 							randModal.classList.add("randomizer-modal_active");
 							
 						}
-					}, 30000);
+					}, time);
 				}
 				interval()
 				const prizes = [
@@ -170,7 +173,7 @@
 					const txt = document.createElement("p");
 					txt.style.margin = `0`;
 					txt.style.width = `54%`;
-					txt.style.transform = `translate(-6px, -32px) rotate(38deg) skew(7deg,7deg) `;
+					txt.style.transform = `translate(-6px, -32px) rotate(38deg)   skew(5deg,1deg) `;
 					segment.className = "segment";
 					segment.style.transform = `rotate(${
 						i * segmentAngle
