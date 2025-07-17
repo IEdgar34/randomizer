@@ -124,7 +124,7 @@
     const rotateTo = (360 * randomSpins) + (360 - randomIndex * segmentAngle - segmentAngle/2);
 
     wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
-    wheel.style.transform = rotate(`${rotateTo}deg`);
+    wheel.style.transform = `rotate(${rotateTo}deg)`;
 
     setTimeout(() => {
       spinning = false;
