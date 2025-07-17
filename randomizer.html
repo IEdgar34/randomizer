@@ -4,10 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Рандомайзер</title>
-			<style>
-                .randomizer-modal * {
-                    font-family: sans-serif;
-                }
+		<style>
+			.randomizer-modal * {
+				font-family: sans-serif;
+			}
 			.wheel-container {
 				position: relative;
 				margin: 0 auto;
@@ -75,14 +75,13 @@
 				font-size: 22px;
 				font-weight: bold;
 			}
-			
-			
+
 			.randomiser-wrapper h1 {
 				color: #0dd6d1;
 			}
-            .randomiser-wrapper #result {
-                color: #0dd6d1;
-            }
+			.randomiser-wrapper #result {
+				color: #0dd6d1;
+			}
 			.randomizer-modal {
 				width: 100%;
 				min-height: 100vh;
@@ -98,15 +97,14 @@
 			.randomizer-modal_active {
 				display: flex;
 			}
-            .randomiser-wrapper {
+			.randomiser-wrapper {
 				width: 100%;
 				max-width: 400px;
 				height: 530px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-                margin-top: 60px;
-				
+				margin-top: 60px;
 			}
 			.rand-modal-close {
 				color: black;
@@ -115,106 +113,109 @@
 				right: 1rem;
 				top: 1rem;
 				cursor: pointer;
-                color: #0dd6d1;
+				color: #0dd6d1;
 			}
 		</style>
 	</head>
 	<body>
-		    <div class="randomizer-modal">
-				<div class="rand-modal-close">&times;</div>
-				<div class="randomiser-wrapper">
-					<h1>Крутите колесо!</h1>
-					<div class="wheel-container">
-						<div class="pointer"></div>
-						<div id="wheel" class="wheel"></div>
-					</div>
-					<button id="spinBtn">Крутить колесо</button>
-					<div id="result"></div>
+		<div class="randomizer-modal">
+			<div class="rand-modal-close">&times;</div>
+			<div class="randomiser-wrapper">
+				<h1>Крутите колесо!</h1>
+				<div class="wheel-container">
+					<div class="pointer"></div>
+					<div id="wheel" class="wheel"></div>
 				</div>
+				<button id="spinBtn">Крутить колесо</button>
+				<div id="result"></div>
 			</div>
+		</div>
 
-			<script>
-				const close = document.querySelector(".rand-modal-close");
-				const randModal = document.querySelector(".randomizer-modal");
-                let time = 1000;
-				close.addEventListener("click", (e) => {
-					randModal.classList.remove("randomizer-modal_active");
-                    time = 30000
-					interval()
-					
-				});
-				function interval() {
-					setTimeout(() => {
-						local = localStorage.getItem("randmodal");
-						if (!local) {
-							randModal.classList.add("randomizer-modal_active");
-							
-						}
-					}, time);
-				}
-				interval()
-				const prizes = [
-					"Скидка 10%",
-					"Фри в подарок",
-					"Напиток в подарок",
-					"Бургер в подарок",
-					"Хот-дог в подарок",
-					"Десерт в подарок",
-					"Подарок партнёра",
-					"Карта холдинга",
-				];
+		<script>
+			const close = document.querySelector(".rand-modal-close");
+			const randModal = document.querySelector(".randomizer-modal");
+			let time = 1000;
+			close.addEventListener("click", (e) => {
+				randModal.classList.remove("randomizer-modal_active");
+				time = 30000;
+				interval();
+			});
+			function interval() {
+				setTimeout(() => {
+					local = localStorage.getItem("randmodal");
+					if (!local) {
+						randModal.classList.add("randomizer-modal_active");
+					}
+				}, time);
+			}
+			interval();
+			const prizes = [
+				"Скидка 10%",
+				"Фри в подарок",
+				"Напиток в подарок",
+				"Бургер в подарок",
+				"Хот-дог в подарок",
+				"Десерт в подарок",
+				"Подарок партнёра",
+				"Карта холдинга",
+			];
+			const images = [
+				"images/hot-dog.svg",
+				"images/sel.svg",
+				"images/partner.svg",
+				"images/fri.svg",
+				"images/drink.svg",
+				"images/card.svg",
+				"images/burger.svg",
+				"images/desert.svg",
+			];
 
-				const wheel = document.getElementById("wheel");
+			const wheel = document.getElementById("wheel");
 
-				// Отрисовка сегментов
-				const segmentAngle = 360 / prizes.length;
-				prizes.forEach((prize, i) => {
-					const segment = document.createElement("div");
-					const txt = document.createElement("p");
-					txt.style.margin = `0`;
-					txt.style.width = `54%`;
-					txt.style.transform = `translate(-6px, -32px) rotate(38deg)   skew(5deg,1deg) `;
-					segment.className = "segment";
-					segment.style.transform = `rotate(${
-						i * segmentAngle
-					}deg) skewY(${90 - segmentAngle}deg)`;
-					txt.innerHTML = "ИКОНКА";
-					segment.append(txt);
-					wheel.appendChild(segment);
-				});
+			// Отрисовка сегментов
+			const segmentAngle = 360 / prizes.length;
+			prizes.forEach((prize, i) => {
+				const segment = document.createElement("div");
+				const txt = document.createElement("img");
+				txt.style.margin = `0`;
+				txt.style.width = `75%`;
+				txt.style.height = `55px`;
+				txt.style.transform = `translate(-20px, -10px) rotate(97deg) skew(53deg, 354deg)`;
+				txt.src = `${images[i]}`;
+				segment.className = "segment";
+				segment.style.transform = `rotate(${
+					i * segmentAngle
+				}deg) skewY(${90 - segmentAngle}deg)`;
+				txt.innerHTML = "ИКОНКА";
+				segment.append(txt);
+				wheel.appendChild(segment);
+			});
 
-				let spinning = false;
-				document
-					.getElementById("spinBtn")
-					.addEventListener("click", () => {
-						if (spinning) return;
-						spinning = true;
-						localStorage.setItem("randmodal", true);
-						const randomIndex = Math.floor(
-							Math.random() * prizes.length
-						);
-						const randomSpins = 3; // количество полных оборотов
-						const rotateTo =
-							360 * randomSpins +
-							(360 -
-								randomIndex * segmentAngle -
-								segmentAngle / 2);
+			let spinning = false;
+			document.getElementById("spinBtn").addEventListener("click", () => {
+				if (spinning) return;
+				spinning = true;
+				localStorage.setItem("randmodal", true);
+				const randomIndex = Math.floor(Math.random() * prizes.length);
+				const randomSpins = 3; // количество полных оборотов
+				const rotateTo =
+					360 * randomSpins +
+					(360 - randomIndex * segmentAngle - segmentAngle / 2);
 
-						wheel.style.transition =
-							"transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
-						wheel.style.transform = `rotate(${rotateTo}deg)`;
+				wheel.style.transition =
+					"transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+				wheel.style.transform = `rotate(${rotateTo}deg)`;
 
-						setTimeout(() => {
-							spinning = false;
-							document.getElementById(
-								"result"
-							).textContent = `Ваш приз: ${prizes[randomIndex]}!`;
-							alert(
-								`Поздравляем! Ваш приз: ${prizes[randomIndex]}!`
-							);
-						}, 4000);
-					});
-			</script>
+				setTimeout(() => {
+					spinning = false;
+					document.getElementById(
+						"result"
+					).textContent = `Ваш приз: ${prizes[randomIndex]}!`;
+					alert(`Поздравляем! Ваш приз: ${prizes[randomIndex]}!`);
+				}, 4000);
+			});
+		</script>
 	</body>
 </html>
+
 
