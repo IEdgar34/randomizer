@@ -109,7 +109,7 @@
   prizes.forEach((prize, i) => {
     const segment = document.createElement('div');
     segment.className = 'segment';
-    segment.style.transform = rotate(`${i * segmentAngle}deg`) ;skewY(`${90 - segmentAngle}deg`);
+    segment.style.transform = `rotate(${i * segmentAngle}deg) skewY(${90 - segmentAngle}deg)`;
     segment.innerHTML = prize;
     wheel.appendChild(segment);
   });
