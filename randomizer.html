@@ -108,9 +108,11 @@
   const segmentAngle = 360 / prizes.length;
   prizes.forEach((prize, i) => {
     const segment = document.createElement('div');
+    const txt = document.createElement('p');
     segment.className = 'segment';
     segment.style.transform = `rotate(${i * segmentAngle}deg) skewY(${90 - segmentAngle}deg)`;
-    segment.innerHTML = prize;
+    txt.innerHTML = prize;
+    segment.append(txt)
     wheel.appendChild(segment);
   });
 
