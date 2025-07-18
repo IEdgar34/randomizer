@@ -160,14 +160,14 @@
 				"Карта холдинга",
 			];
 			const images = [
-				"images/hot-dog.svg",
 				"images/sel.svg",
-				"images/partner.svg",
 				"images/fri.svg",
 				"images/drink.svg",
-				"images/card.svg",
 				"images/burger.svg",
+				"images/hot-dog.svg",
 				"images/desert.svg",
+				"images/partner.svg",
+				"images/card.svg",
 			];
 
 			const wheel = document.getElementById("wheel");
@@ -178,10 +178,11 @@
 				const segment = document.createElement("div");
 				const txt = document.createElement("img");
 				txt.style.margin = `0`;
-				txt.style.width = `75%`;
-				txt.style.height = `55px`;
-				txt.style.transform = `translate(-20px, -10px) rotate(97deg) skew(53deg, 354deg)`;
-				txt.src = `${images[i]}`;
+				txt.style.width = `58%`;
+				txt.style.height = `44px`;
+				txt.style.transform = `translate(-9px, -15px) rotate(151deg) skew(4deg, 334deg)`;
+				/* txt.src = `${images[i]}`; */
+				txt.src = `images/box.png`;
 				segment.className = "segment";
 				segment.style.transform = `rotate(${
 					i * segmentAngle
@@ -195,7 +196,7 @@
 			document.getElementById("spinBtn").addEventListener("click", () => {
 				if (spinning) return;
 				spinning = true;
-				localStorage.setItem("randmodal", true);
+				/* localStorage.setItem("randmodal", true); */
 				const randomIndex = Math.floor(Math.random() * prizes.length);
 				const randomSpins = 3; // количество полных оборотов
 				const rotateTo =
